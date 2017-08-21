@@ -1,0 +1,15 @@
+#p{
+    padding: 15px;
+    border-radius: 10px;
+}
+.result{
+    text-align: center;
+}
+.mydropdown{
+    cursor: pointer;
+}
+.attention{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

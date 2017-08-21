@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-simplex.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <form>
+                {% csrf_token %}
+
+                <div class="form-group dropdown">
+                    <label for="from" class="control-label">Звідки:</label>
+                    <input autocomplete="off" type="text" class="form-control dropdown-toggle" onkeyup="find_station1()"
+                           data-toggle="dropdown" id="from">
+                    <ul class="dropdown-menu" id="menu1">
+                        <li class="disabled"><a>Нічого не знайдено</a></li>
+                    </ul>
+                </div>
+
+                <div class="form-group dropdown">
+                    <label for="till" class="control-label">Куди:</label>
+                    <input autocomplete="off" type="text" class="form-control dropdown-toggle" onkeyup="find_station2()"
+                           data-toggle="dropdown" id="till">
+                    <ul class="dropdown-menu" id="menu2">
+                        <li class="disabled"><a>Нічого не знайдено</a></li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label for="day" class="control-label">День</label>
+                    <input autocomplete="off" type="text" class="form-control" id="day">
+                </div>
+                <div class="form-group">
+                    <label for="month" class="control-label">Місяць</label>
+                    <select class="form-control" id="month">
+                        {% for m in months %}
+                            {% if m == month %}
+                                <option value="{{ m }}" selected>{{ m }}</option>
+                            {% else %}
+                                <option value="{{ m }}">{{ m }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year" class="control-label">Рік</label>
+                    <select class="form-control" id="year">
+                        <option value="{{ date }}">{{ date }}</option>
+                        <option value="{{ date|add:'+1' }}">{{ date|add:'+1' }}</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="select" class="control-label">Частота перевірки (в секундах)</label>
+                    <select class="form-control" id="select">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <p class="attention">Для повідомлення про знайдений квиток дозвольте для цієї сторінки спливаючі
+                        вікна</p>
+                </div>
+
+                <button id="start" type="button" class="btn btn-primary btn-block" onclick="start_timer()">Почати
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 result">
+            <h1 id="p">Поле для результату пошуку</h1>
+            <p>Кількість перевірок</p>
+            <p id="times">0</p>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'js/jquery-3.2.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
