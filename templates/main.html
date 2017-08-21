@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-simplex.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
@@ -13,7 +14,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <form>
                 {% csrf_token %}
 
@@ -84,7 +85,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 result">
+        <div class="col-sm-12 col-md-12 col-lg-12 result">
             <h1 id="p">Поле для результату пошуку</h1>
             <p>Кількість перевірок</p>
             <p id="times">0</p>
